@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+	<conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <conversionRule conversionWord="wEx"
+                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
+	
+	<springProperty scope="context" name="springAppName" source="spring.application.name"/>
+	
+	<property name="CONSOLE_LOG_PATTERN"
+			  value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan}%clr(.%method){magenta}%clr([%line]){magenta} %clr%-1(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+	
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+	  <encoder>
+	    <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        <charset>UTF-8</charset>  
+	  </encoder>
+	  <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+	    <level>DEBUG</level>
+	  </filter>
+	</appender>
+    
+    <appender name="dailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	  <File>sender/log/app.log</File>
+	  <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+	    <level>DEBUG</level>
+	  </filter>
+	  <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	    <!-- daily rollover -->
+	    <FileNamePattern>data/log/log%d{yyyy-MM-dd}.log</FileNamePattern>
+	    <!-- keep 30 days' worth of history -->
+	    <maxHistory>30</maxHistory>         
+	  </rollingPolicy>
+	  <encoder>
+	    <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%5level] [%thread] %logger{36} - %msg%n</Pattern>
+	    <charset>UTF-8</charset>  
+	  </encoder>        
+	</appender>
+    
+    <!-- 异步输出 -->
+    <appender name="ASYNC" class= "ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志，故设置为0 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+        <queueSize>512</queueSize>
+        <!-- 添加附加的appender,最多只能添加一个 -->
+        <appender-ref ref ="dailyRollingFileAppender"/>
+    </appender>
+    
+   <!-- 此处对于下面映射的appender再次进行日志级别的过滤，此时过滤仅在appender基础上进行，故小于等于appender级次即可。 -->
+    <!-- 如果定义了<logger name="com.s***" level="DEBUG" />则对应包路径下的日志输出级别以logger为更高优先级，同时也是在appender基础上进行过滤.
+         非定义的包路径仍然采用此root定义的level -->
+    <root level="INFO">
+        <appender-ref ref="ASYNC"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+    
+    <!-- define for springboot admin logging panel -->
+    <jmxConfigurator/>
+</configuration>
