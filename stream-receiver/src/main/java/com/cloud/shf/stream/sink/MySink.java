@@ -66,4 +66,14 @@ public interface MySink {
 
     @Input(DYNAMIC2_CHANNEL)
     SubscribableChannel dynamic2Input();
+
+    /*********************************多binder示例******************************/
+    String KAFKA_CHANNEL = "kafka-channel";
+    String RABBIT_CHANNEL = "rabbit-channel";
+
+    @Input(KAFKA_CHANNEL)
+    SubscribableChannel kafkaInput();
+
+    @Input(RABBIT_CHANNEL)
+    SubscribableChannel rabbitInput();
 }

@@ -11,3 +11,5 @@ http://blog.csdn.net/songhaifengshuaige/article/details/79264851
 http://blog.csdn.net/songhaifengshuaige/article/details/79266444
 ### Stream进阶篇-动态绑定消息通道：
 http://blog.csdn.net/songhaifengshuaige/article/details/79275479
+### Stream进阶篇-KafkaBinder与RabbitBinder共存应用
+http://blog.csdn.net/songhaifengshuaige/article/details/79275916

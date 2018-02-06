@@ -111,4 +111,15 @@ public class SinkReceiver {
     public void dynamic2Receiver(@Payload User user) {
         LOGGER.info("Received-{} from {} channel age: {}", active, MySink.DYNAMIC2_CHANNEL, user.getAge());
     }
+
+    /*********************************多binder示例******************************/
+    @StreamListener(value = MySink.KAFKA_CHANNEL)
+    public void kafkaReceiver(@Payload User user) {
+        LOGGER.info("Received-{} from {} channel age: {}", active, MySink.KAFKA_CHANNEL, user.getAge());
+    }
+
+    @StreamListener(value = MySink.RABBIT_CHANNEL)
+    public void rabbitReceiver(@Payload User user) {
+        LOGGER.info("Received-{} from {} channel age: {}", active, MySink.RABBIT_CHANNEL, user.getAge());
+    }
 }
