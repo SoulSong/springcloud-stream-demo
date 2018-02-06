@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+/sender/
+/.idea/
+/data/
+/stream-receiver/stream-receiver.iml
+/spring-cloud-stream-demo.iml
+/stream-sender/target/
+/stream-sender/stream-sender.iml
