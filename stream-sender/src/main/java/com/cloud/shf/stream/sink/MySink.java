@@ -31,5 +31,6 @@ public interface MySink {
     String PARTITION_CHANNEL = "partition-channel";
 
     @Output(PARTITION_CHANNEL)
-    MessageChannel partitionInput();
+    MessageChannel partitionOutput();
+
 }

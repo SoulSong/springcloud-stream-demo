@@ -9,3 +9,5 @@ http://blog.csdn.net/songhaifengshuaige/article/details/79264653
 http://blog.csdn.net/songhaifengshuaige/article/details/79264851
 ### Stream进阶篇-消息分区实现验证&源码简析：
 http://blog.csdn.net/songhaifengshuaige/article/details/79266444
+### Stream进阶篇-动态绑定消息通道：
+http://blog.csdn.net/songhaifengshuaige/article/details/79275479

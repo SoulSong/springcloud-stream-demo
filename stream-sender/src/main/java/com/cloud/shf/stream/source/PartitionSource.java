@@ -22,7 +22,7 @@ import java.util.Random;
  * @author songhaifeng
  * @date 2018/2/3
  */
-@EnableBinding(value = MySink.class)
+//@EnableBinding(value = MySink.class)
 public class PartitionSource {
     private static final Logger LOGGER = LoggerFactory.getLogger(PartitionSource.class);
 
